@@ -143,11 +143,11 @@ int isIncreasing(int * array, int length)
           n++;
 	}
     }
-  if(n == length)
+  if(n == (length - 1))
     {
       array_status = 1;
     }
-  if(n < length)
+  if(n < (length - 1))
     {
       array_status = 0;
     }

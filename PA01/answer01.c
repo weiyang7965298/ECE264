@@ -134,7 +134,7 @@ int countNegative(int * array, int length)
 int isIncreasing(int * array, int length)
 {
   int i;// loop control variable
-  int n = 0;
+  int n = 0;// a variable that calulate the total numbers that array[i] < array[j]
   int array_status; //the variable represent the function is increasing or decreasing
   for(i = 0; i < length - 1; i++)
     {
@@ -143,7 +143,7 @@ int isIncreasing(int * array, int length)
           n++;
 	}
     }
-  if(n == (length - 1))
+  if(n == (length - 1) || length == 0 || length == 1)
     {
       array_status = 1;
     }

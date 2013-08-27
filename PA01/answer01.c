@@ -147,9 +147,11 @@ int isIncreasing(int * array, int length)
     {
       array_status = 1;
     }
-  if(n < (length - 1))
+  else
     {
       array_status = 0;
     }
+
+  
   return (array_status);
 }

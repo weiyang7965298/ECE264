@@ -1,65 +1,65 @@
-==10298== Memcheck, a memory error detector
-==10298== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
-==10298== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
-==10298== Command: ./pa02 inputs/input7
-==10298== Parent PID: 10289
-==10298== 
---10298-- 
---10298-- Valgrind options:
---10298--    --tool=memcheck
---10298--    --leak-check=full
---10298--    --verbose
---10298--    --log-file=outputs/valgrind-log67
---10298-- Contents of /proc/version:
---10298--   Linux version 2.6.32-358.18.1.el6.x86_64 (mockbuild@x86-003.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-3) (GCC) ) #1 SMP Fri Aug 2 17:04:38 EDT 2013
---10298-- Arch and hwcaps: AMD64, amd64-sse3-cx16
---10298-- Page sizes: currently 4096, max supported 4096
---10298-- Valgrind library directory: /usr/lib64/valgrind
---10298-- Reading syms from /home/shay/a/wei55/ECE264/solutions/ECE264/PA02/pa02
---10298-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
---10298--    object doesn't have a dynamic symbol table
---10298-- Reading syms from /lib64/ld-2.12.so
---10298-- Scheduler: using generic scheduler lock implementation.
---10298-- Reading suppressions file: /usr/lib64/valgrind/default.supp
-==10298== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-10298-by-wei55-on-ecelinux03.ecn.purdue.edu
-==10298== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-10298-by-wei55-on-ecelinux03.ecn.purdue.edu
-==10298== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-10298-by-wei55-on-ecelinux03.ecn.purdue.edu
-==10298== 
-==10298== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==10298== don't want to do, unless you know exactly what you're doing,
-==10298== or are doing some strange experiment):
-==10298==   /usr/lib64/valgrind/../../bin/vgdb --pid=10298 ...command...
-==10298== 
-==10298== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==10298==   /path/to/gdb ./pa02
-==10298== and then give GDB the following command
-==10298==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=10298
-==10298== --pid is optional if only one valgrind process is running
-==10298== 
---10298-- REDIR: 0x399be17520 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
---10298-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
---10298-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
---10298-- REDIR: 0x399be17390 (index) redirected to 0x4a07bf0 (index)
---10298-- REDIR: 0x399be17410 (strcmp) redirected to 0x4a08530 (strcmp)
---10298-- Reading syms from /lib64/libc-2.12.so
---10298-- REDIR: 0x399c284ec0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
---10298-- REDIR: 0x399c287180 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
---10298-- REDIR: 0x399c282e30 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
---10298-- REDIR: 0x399c27f8d0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
---10298-- REDIR: 0x399c327ac0 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
---10298-- REDIR: 0x399c28ace0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
---10298-- REDIR: 0x399c2846f0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
---10298-- REDIR: 0x399c27b710 (free) redirected to 0x4a06369 (free)
-==10298== 
-==10298== HEAP SUMMARY:
-==10298==     in use at exit: 0 bytes in 0 blocks
-==10298==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==10298== 
-==10298== All heap blocks were freed -- no leaks are possible
-==10298== 
-==10298== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
---10298-- 
---10298-- used_suppression:      4 U1004-ARM-_dl_relocate_object
---10298-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
-==10298== 
-==10298== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+==18303== Memcheck, a memory error detector
+==18303== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==18303== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==18303== Command: ./pa02 inputs/input7
+==18303== Parent PID: 18294
+==18303== 
+--18303-- 
+--18303-- Valgrind options:
+--18303--    --tool=memcheck
+--18303--    --leak-check=full
+--18303--    --verbose
+--18303--    --log-file=outputs/valgrind-log67
+--18303-- Contents of /proc/version:
+--18303--   Linux version 2.6.32-358.18.1.el6.x86_64 (mockbuild@x86-003.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-3) (GCC) ) #1 SMP Fri Aug 2 17:04:38 EDT 2013
+--18303-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--18303-- Page sizes: currently 4096, max supported 4096
+--18303-- Valgrind library directory: /usr/lib64/valgrind
+--18303-- Reading syms from /home/shay/a/wei55/ECE264/solutions/ECE264/PA02/pa02
+--18303-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--18303--    object doesn't have a dynamic symbol table
+--18303-- Reading syms from /lib64/ld-2.12.so
+--18303-- Scheduler: using generic scheduler lock implementation.
+--18303-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==18303== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-18303-by-wei55-on-ecelinux03.ecn.purdue.edu
+==18303== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-18303-by-wei55-on-ecelinux03.ecn.purdue.edu
+==18303== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-18303-by-wei55-on-ecelinux03.ecn.purdue.edu
+==18303== 
+==18303== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==18303== don't want to do, unless you know exactly what you're doing,
+==18303== or are doing some strange experiment):
+==18303==   /usr/lib64/valgrind/../../bin/vgdb --pid=18303 ...command...
+==18303== 
+==18303== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==18303==   /path/to/gdb ./pa02
+==18303== and then give GDB the following command
+==18303==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=18303
+==18303== --pid is optional if only one valgrind process is running
+==18303== 
+--18303-- REDIR: 0x399be17520 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--18303-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--18303-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--18303-- REDIR: 0x399be17390 (index) redirected to 0x4a07bf0 (index)
+--18303-- REDIR: 0x399be17410 (strcmp) redirected to 0x4a08530 (strcmp)
+--18303-- Reading syms from /lib64/libc-2.12.so
+--18303-- REDIR: 0x399c284ec0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--18303-- REDIR: 0x399c287180 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--18303-- REDIR: 0x399c282e30 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--18303-- REDIR: 0x399c27f8d0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--18303-- REDIR: 0x399c327ac0 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+--18303-- REDIR: 0x399c28ace0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--18303-- REDIR: 0x399c2846f0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--18303-- REDIR: 0x399c27b710 (free) redirected to 0x4a06369 (free)
+==18303== 
+==18303== HEAP SUMMARY:
+==18303==     in use at exit: 0 bytes in 0 blocks
+==18303==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==18303== 
+==18303== All heap blocks were freed -- no leaks are possible
+==18303== 
+==18303== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--18303-- 
+--18303-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--18303-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==18303== 
+==18303== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)

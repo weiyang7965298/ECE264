@@ -27,7 +27,7 @@ int my_strlen(const char * s)
  */
 int my_countchar(const char * s, char c)
 {
-  int n = 0; // loop control variable
+  int n = 0; // the number of occurrences of a particular character 'c' in string 's'
   int i = 0; //loop control variable
   while(s[i] != '\0')
     {

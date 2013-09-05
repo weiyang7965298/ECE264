@@ -36,7 +36,6 @@ int my_countchar(const char * s, char c)
 	  n++;
 	}      
       i++;
-      
     }
   return (n);
 }
@@ -122,7 +121,6 @@ void my_strncpy(char * s1, const char * s2, int num)
   for(i = 0; i < num; i++)
     {
       s1[i] = s2[i];
-     
     }
   s1[num] = '\0'; 
 }
@@ -264,8 +262,7 @@ void my_strinsert(char *s1, const char *s2, int pos)
       for(i = length_1 - 1; i >= 0; i--)
 	{
 	  s1[i + length_2] = s1[i];
-          
-	}
+        }
       for(j = 0; j < length_2; j++)
 	{
 	  s1[pos + j] = s2[j];

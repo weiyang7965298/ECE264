@@ -1,4 +1,5 @@
 
+
 #include "pa03.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -61,8 +62,38 @@
  */
 
 int * readIntegers(const char * filename, int * numberOfIntegers)
-{
-    return NULL;
+{   
+  FILE *f = fopen(filename, "r");
+  if(f == NULL) 
+    {
+      fclose(f);
+      return NULL;
+    }
+  
+
+  //  *numberOfIntegers = 0;
+  int n = 0 ;  // the number of integers
+  int temp = 0; // temporary value
+  while(fscanf(f, "%d", & temp) == 1)
+    { 
+      // (*numberOfIntegers) ++
+      n++;    
+    } 
+  *numberOfIntegers = n;
+  
+int *arr;
+  arr = malloc(sizeof(int) * n);
+  fseek(f,0,SEEK_SET);
+
+  int i=0;
+  //while(fscanf(f, "%d", & arr[i]) == 1)
+    while(fscanf(f, "%d",&temp) == 1)
+    {
+      arr[i] = temp;
+      i++;
+    }              
+  fclose(f);
+  return arr;
 }
 
 /**
@@ -102,11 +133,75 @@ int * readIntegers(const char * filename, int * numberOfIntegers)
  * sort.
  *
  */
-void sort(int * arr, int length)
+/*void swap(int *a, int *b)
 {
-    
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+  }*/
+
+void quicksort(int *arr, int ind1, int ind2)
+{ 
+  
+  if(ind1 == ind2)
+    {
+      return;
+    }
+  /* int left = ind1 + 1;
+     int right = ind2;
+     int pivot = ind1;
+     //  int temp;
+     while(left < right)
+     {
+     while(arr[left] <= arr[pivot])
+     {left++;}
+     while(arr[right] > arr[pivot])
+     {right--;}
+     swap(&arr[left], &arr[right]);
+      
+     }
+   
+     swap(&arr[pivot], &arr[right]);
+     quicksort(arr,ind1,left-1);
+     quicksort(arr,right+1,ind2);*/
+  int left;
+  int right;
+  int pivot;
+  int temp;
+  //while(left < right)
+  if(ind1 < ind2)
+    { left = ind1;
+      right = ind2;
+      pivot = ind1;
+    }
+      while(left < right)
+	{
+      while(arr[left] <= arr[pivot])
+	{left++;}
+      while(arr[right] > arr[pivot])
+	{right--;}
+      // swap(&arr[left], &arr[right]);
+      if(left < right)
+	{
+      temp = arr[right];
+      arr[right] = arr[left];
+      arr[left]=temp;
+}
+    }
+      temp = arr[pivot];
+      arr[pivot] = arr[right];
+      arr[right]=temp;
+      quicksort(arr,ind1, left-1);
+      quicksort(arr,right+1,ind2);
+
 }
 
+
+
+void sort(int * arr, int length)
+{
+  quicksort(arr, 0, length);
+}
 /**
  * Use binary search to find 'key' in a sorted array of integers
  *
@@ -151,9 +246,18 @@ void sort(int * arr, int length)
  * }
  * return -1;
  */
+
+int searchhelp(int * arr,int low, int high, int key)
+{ 
+  int mid = (low + high) / 2;
+  if(low > high){ return -1;}
+  else if(arr[mid] == key){return arr[mid];}
+  else if(arr[mid] < key){return searchhelp(arr,low,mid-1,key);}
+  else {return searchhelp(arr,mid+1,high,key);}
+}
 int search(int * arr, int length, int key)
 {
-    return -1;
+  return (searchhelp(arr, 0, length, key));
 }
 
 

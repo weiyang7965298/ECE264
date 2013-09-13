@@ -79,6 +79,7 @@ int * readIntegers(const char * filename, int * numberOfIntegers)
       // (*numberOfIntegers) ++
       n++;    
     } 
+  printf("\n length is %d\n", n);
   *numberOfIntegers = n;
   
 int *arr;
@@ -133,74 +134,97 @@ int *arr;
  * sort.
  *
  */
-/*void swap(int *a, int *b)
+void swap(int *a, int *b)
 {
-  int temp = *a;
+  int temp;
+  temp  = *a;
   *a = *b;
   *b = temp;
-  }*/
+}
 
 void quicksort(int *arr, int ind1, int ind2)
 { 
-  
-  if(ind1 == ind2)
-    {
-      return;
-    }
-  /* int left = ind1 + 1;
-     int right = ind2;
-     int pivot = ind1;
-     //  int temp;
-     while(left < right)
-     {
-     while(arr[left] <= arr[pivot])
-     {left++;}
-     while(arr[right] > arr[pivot])
-     {right--;}
-     swap(&arr[left], &arr[right]);
-      
-     }
-   
-     swap(&arr[pivot], &arr[right]);
-     quicksort(arr,ind1,left-1);
-     quicksort(arr,right+1,ind2);*/
+
   int left;
   int right;
   int pivot;
-  int temp;
-  //while(left < right)
+
   if(ind1 < ind2)
-    { left = ind1;
+    {
+      left = ind1;
       right = ind2;
       pivot = ind1;
-    }
+   
       while(left < right)
 	{
-      while(arr[left] <= arr[pivot])
-	{left++;}
-      while(arr[right] > arr[pivot])
-	{right--;}
-      // swap(&arr[left], &arr[right]);
-      if(left < right)
-	{
-      temp = arr[right];
-      arr[right] = arr[left];
-      arr[left]=temp;
-}
-    }
-      temp = arr[pivot];
-      arr[pivot] = arr[right];
-      arr[right]=temp;
+	  while(arr[left] <= arr[pivot]&&(left < ind2))
+	    {left++;}
+	  while(arr[right] > arr[pivot]&&(right > ind1))
+	    {right--;}
+
+	  if(left < right)
+	    {
+
+	      swap(&arr[left], &arr[right]);
+	    }
+	}
+
+      swap(&arr[pivot], &arr[right]);
       quicksort(arr,ind1, left-1);
       quicksort(arr,right+1,ind2);
 
+    }
 }
+  /*int left;
+  int right;
+  int pivot;
+
+  int i;
+  for(i = 0; i < ind2; i++)
+    {
+      printf("arr[%d]: %d\n", i, arr[i]);
+    }
+
+   if(ind1 == ind2)
+    {
+      return;
+    }
+
+
+   if(ind1 < ind2)
+     {
+      left = ind1+1;
+      right = ind2;
+      pivot = arr[ind1];
+    
+      while(left < right)
+	{
+	  while((arr[left] < pivot)&&(left < ind2))
+	    {left++;}
+	  while((arr[right] > pivot)&&(right > ind1))
+	    {right--;}
+	  if(left < right)
+	    {
+	      swap(&arr[left], &arr[right]);
+	    }
+
+
+	}
+    
+  swap(&pivot, &arr[right]);
+  quicksort(arr,ind1,left-1);
+  quicksort(arr,right+1,ind2);*/
+   
+
+
+
+
 
 
 
 void sort(int * arr, int length)
 {
-  quicksort(arr, 0, length);
+  quicksort(arr, 0, length-1);
 }
 /**
  * Use binary search to find 'key' in a sorted array of integers
@@ -250,11 +274,12 @@ void sort(int * arr, int length)
 int searchhelp(int * arr,int low, int high, int key)
 { 
   int mid = (low + high) / 2;
-  if(low > high){ return -1;}
-  else if(arr[mid] == key){return arr[mid];}
-  else if(arr[mid] < key){return searchhelp(arr,low,mid-1,key);}
-  else {return searchhelp(arr,mid+1,high,key);}
-}
+   if(low > high){ return -1;}
+   if(arr[mid] == key){return mid;}
+   if(arr[mid] < key){return searchhelp(arr,low,mid-1,key);}
+   else {return searchhelp(arr,mid+1,high,key);}
+
+  }
 int search(int * arr, int length, int key)
 {
   return (searchhelp(arr, 0, length, key));

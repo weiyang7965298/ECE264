@@ -144,9 +144,9 @@ void swap(int *a, int *b)
 
 void quicksort(int *arr, int ind1, int ind2)
 { 
-  int left;
+  int left; 
   int right;
-  int pivot;
+  int pivot; // the chosen pivot;
   if(ind1 == ind2)
     {return;}
   if(ind1 < ind2)
@@ -227,7 +227,7 @@ void sort(int * arr, int length)
 int searchhelp(int * arr,int low, int high, int key)
 { 
 
-  int mid = (low + high) / 2;
+  int mid = (low + high) / 2; // the mid the current array
   // printf("mid is %d , arr[mid] is %d\n", mid, arr[mid]);   this line is to check the code;
    if(low > high){ return -1;}
    if(arr[mid] == key){return mid;}

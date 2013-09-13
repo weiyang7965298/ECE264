@@ -79,7 +79,7 @@ int * readIntegers(const char * filename, int * numberOfIntegers)
       // (*numberOfIntegers) ++
       n++;    
     } 
-  // printf("\n length is %d\n", n);
+  // printf("\n length is %d\n", n);  this line is test the length.
   *numberOfIntegers = n;
   
   int *arr;
@@ -148,28 +148,28 @@ void quicksort(int *arr, int ind1, int ind2)
   int right;
   int pivot;
   if(ind1 == ind2)
-    {return ;}
+    {return;}
   if(ind1 < ind2)
     {
       left = ind1;
       right = ind2;
+      //pivot = arr[ind1];
       pivot = ind1;
-   
       while(left < right)
 	{
-	  while(arr[left] <= arr[pivot]&&(left < ind2))
-	    {left++;}
+
 	  while(arr[right] > arr[pivot]&&(right > ind1))
 	    {right--;}
-
-	  if(left < right)
+	  while(arr[left] <= arr[pivot]&&(left < ind2))
+	    {left++;}
+          if(left < right)
 	    {
-
 	      swap(&arr[left], &arr[right]);
 	    }
 	}
 
       swap(&arr[pivot], &arr[right]);
+      // swap(&pivot, &arr[right]);
       quicksort(arr,ind1, left-1);
       quicksort(arr,right+1,ind2);
     }
@@ -228,7 +228,7 @@ int searchhelp(int * arr,int low, int high, int key)
 { 
 
   int mid = (low + high) / 2;
-  // printf("mid is %d , arr[mid] is %d\n", mid, arr[mid]);
+  // printf("mid is %d , arr[mid] is %d\n", mid, arr[mid]);   this line is to check the code;
    if(low > high){ return -1;}
    if(arr[mid] == key){return mid;}
    if(arr[mid]> key){return searchhelp(arr,low,mid-1,key);}
@@ -237,7 +237,7 @@ int searchhelp(int * arr,int low, int high, int key)
 
 int search(int * arr, int length, int key)
 {
-  return (searchhelp(arr, 0, length -1 , key));
+  return (searchhelp(arr, 0, length - 1 , key));
 }
 
 

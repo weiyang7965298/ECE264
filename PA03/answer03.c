@@ -79,18 +79,18 @@ int * readIntegers(const char * filename, int * numberOfIntegers)
       // (*numberOfIntegers) ++
       n++;    
     } 
-  printf("\n length is %d\n", n);
+  // printf("\n length is %d\n", n);
   *numberOfIntegers = n;
   
-int *arr;
+  int *arr;
   arr = malloc(sizeof(int) * n);
   fseek(f,0,SEEK_SET);
 
   int i=0;
-  //while(fscanf(f, "%d", & arr[i]) == 1)
-    while(fscanf(f, "%d",&temp) == 1)
+  while(fscanf(f, "%d", & arr[i]) == 1)
+    //while(fscanf(f, "%d",&temp) == 1)
     {
-      arr[i] = temp;
+      // arr[i] = temp;
       i++;
     }              
   fclose(f);
@@ -144,11 +144,11 @@ void swap(int *a, int *b)
 
 void quicksort(int *arr, int ind1, int ind2)
 { 
-
   int left;
   int right;
   int pivot;
-
+  if(ind1 == ind2)
+    {return ;}
   if(ind1 < ind2)
     {
       left = ind1;
@@ -172,55 +172,8 @@ void quicksort(int *arr, int ind1, int ind2)
       swap(&arr[pivot], &arr[right]);
       quicksort(arr,ind1, left-1);
       quicksort(arr,right+1,ind2);
-
     }
 }
-  /*int left;
-  int right;
-  int pivot;
-
-  int i;
-  for(i = 0; i < ind2; i++)
-    {
-      printf("arr[%d]: %d\n", i, arr[i]);
-    }
-
-   if(ind1 == ind2)
-    {
-      return;
-    }
-
-
-   if(ind1 < ind2)
-     {
-      left = ind1+1;
-      right = ind2;
-      pivot = arr[ind1];
-    
-      while(left < right)
-	{
-	  while((arr[left] < pivot)&&(left < ind2))
-	    {left++;}
-	  while((arr[right] > pivot)&&(right > ind1))
-	    {right--;}
-	  if(left < right)
-	    {
-	      swap(&arr[left], &arr[right]);
-	    }
-
-
-	}
-    
-  swap(&pivot, &arr[right]);
-  quicksort(arr,ind1,left-1);
-  quicksort(arr,right+1,ind2);*/
-   
-
-
-
-
-
-
 
 void sort(int * arr, int length)
 {
@@ -273,16 +226,18 @@ void sort(int * arr, int length)
 
 int searchhelp(int * arr,int low, int high, int key)
 { 
+
   int mid = (low + high) / 2;
+  // printf("mid is %d , arr[mid] is %d\n", mid, arr[mid]);
    if(low > high){ return -1;}
    if(arr[mid] == key){return mid;}
-   if(arr[mid] < key){return searchhelp(arr,low,mid-1,key);}
+   if(arr[mid]> key){return searchhelp(arr,low,mid-1,key);}
    else {return searchhelp(arr,mid+1,high,key);}
+}
 
-  }
 int search(int * arr, int length, int key)
 {
-  return (searchhelp(arr, 0, length, key));
+  return (searchhelp(arr, 0, length -1 , key));
 }
 
 

@@ -46,8 +46,6 @@ void partition(int * result, int ind, int num)
   if (num == 0)
     {
       printpartition(result, ind);
-      /* ind tells us how many elements are used */
-  
     }
   for (i = 1; i <= num; i++)
     {
@@ -87,8 +85,6 @@ void partition_increasing(int * result, int ind, int num)
   if (num == 0)
     {
       printpartition(result, ind);
-      /* ind tells us how many elements are used */
-  
     }
   for (i = 1; i <= num; i++)
     {
@@ -96,7 +92,8 @@ void partition_increasing(int * result, int ind, int num)
       if(i > result[ind - 1] || ind == 0)
 	{
 	  result[ind] = i;
-	  partition_increasing(result, ind + 1, num - i);}
+	  partition_increasing(result, ind + 1, num - i);
+	}
 
     }
 }
@@ -133,9 +130,7 @@ void partition_decreasing(int * result, int ind, int num)
   int i = 0;
   if (num == 0)
     {
-      printpartition(result, ind);
-      /* ind tells us how many elements are used */
-  
+      printpartition(result, ind); 
     }
   for (i = 1; i <= num; i++)
     {
@@ -143,7 +138,8 @@ void partition_decreasing(int * result, int ind, int num)
       if(i < result[ind - 1] || ind == 0)
 	{
 	  result[ind] = i;
-	  partition_decreasing(result, ind + 1, num - i);}
+	  partition_decreasing(result, ind + 1, num - i);
+	}
 
     }
 }
@@ -177,7 +173,6 @@ void partition_odd(int * result, int ind, int num)
   if (num == 0)
     {
       printpartition(result, ind);
-      /* ind tells us how many elements are used */
     }
   for (i = 1; i <= num; i++)
     {
@@ -222,7 +217,6 @@ void partition_even(int * result, int ind, int num)
   if (num == 0)
     {
       printpartition(result, ind);
-      /* ind tells us how many elements are used */
     }
   for (i = 1; i <= num; i++)
     {
@@ -266,7 +260,6 @@ void partition_oddeven(int * result, int ind, int num)
   if (num == 0)
     {
       printpartition(result, ind);
-      /* ind tells us how many elements are used */
     }
   for (i = 1; i <= num; i++)
     {
@@ -315,7 +308,6 @@ int prime(int number)
 	    {
 	      return 0;
             }
-
 	}
     }
   return 1;

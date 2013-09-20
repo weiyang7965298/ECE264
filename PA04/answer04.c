@@ -1,0 +1,349 @@
+/*
+ * Please fill the functions in this file.
+ * You can add additional functions. 
+ *
+ * Hint: 
+ * You can write additonal functions.
+ * You can test your functions with your own input file.
+ * See details in README or typing command ./pa04 in terminal after make.
+ * See output format examples in any of the files in directory expected.
+ * 
+ * You may create additional arrays if needed.  The maximum size
+ * needed is specified by MAXLENGTH in pa04.h.
+ */
+
+#include "pa04.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+/*
+ * =================================================================
+ * This function prints all partitions of a positive integer value
+ * For example, if the value is 3:
+ *
+ * partitionAll 3
+ * = 1 + 1 + 1
+ * = 1 + 2
+ * = 2 + 1
+ * = 3
+ */
+
+void printpartition(int *part,int length)
+{
+  int ind = 0;
+  printf("= ");
+  for (ind = 0; ind < length - 1; ind ++)
+    {
+      printf("%d + ", part[ind]);
+    }
+  printf("%d\n", part[length - 1]);
+}
+void partition(int * result, int ind, int num)
+{
+  int i = 0;
+  if (num == 0)
+    {
+      printpartition(result, ind);
+      /* ind tells us how many elements are used */
+  
+    }
+  for (i = 1; i <= num; i++)
+    {
+      result[ind] = i;
+      partition(result, ind + 1, num - i);
+
+    }
+}
+void partitionAll(int value)
+{
+  int arr[MAXLENGTH] = {0};
+  printf("partitionAll %d\n", value);
+  partition(arr,0,value);
+}
+/*
+ * =================================================================
+ * This function prints the partitions that use increasing values.
+ *
+ * For example, if value is 5
+ * 2 + 3 and
+ * 1 + 4 are valid partitions
+ *
+ * 5 is a valid partition
+ * 
+ * 1 + 1 + 3 and
+ * 2 + 1 + 2 and
+ * 3 + 2 are invalid partitions.
+ * 
+ * The program should generate only valid partitions.  Do not
+ * generates invalid partitions and checks validity before printing.
+ *
+ */
+
+void partition_increasing(int * result, int ind, int num)
+{
+  int i = 0;
+  if (num == 0)
+    {
+      printpartition(result, ind);
+      /* ind tells us how many elements are used */
+  
+    }
+  for (i = 1; i <= num; i++)
+    {
+      
+      if(i > result[ind - 1] || ind == 0)
+	{
+	  result[ind] = i;
+	  partition_increasing(result, ind + 1, num - i);}
+
+    }
+}
+
+void partitionIncreasing(int value)
+{
+  printf("partitionIncreasing %d\n", value);
+  int arr[MAXLENGTH] = {0};
+ 
+  partition_increasing(arr,0,value);
+}
+
+/*
+ * =================================================================
+ * This function prints the partitions that use Decreasing values.
+ *
+ * For example, if value is 5
+ * 3 + 2 and
+ * 4 + 1 are valid partitions
+ *
+ * 5 is a valid partition
+ * 
+ * 1 + 1 + 3 and
+ * 2 + 1 + 2 and
+ * 2 + 3 are invalid partitions.
+ * 
+ * The program should generate only valid partitions.  Do not
+ * generates invalid partitions and checks validity before printing.
+ *
+ */
+
+void partition_decreasing(int * result, int ind, int num)
+{
+  int i = 0;
+  if (num == 0)
+    {
+      printpartition(result, ind);
+      /* ind tells us how many elements are used */
+  
+    }
+  for (i = 1; i <= num; i++)
+    {
+      
+      if(i < result[ind - 1] || ind == 0)
+	{
+	  result[ind] = i;
+	  partition_decreasing(result, ind + 1, num - i);}
+
+    }
+}
+void partitionDecreasing(int value)
+{
+  printf("partitionDecreasing %d\n", value);
+  int arr[MAXLENGTH] = {0};
+  partition_decreasing(arr,0,value);
+
+}
+
+/*
+ * =================================================================
+ * This function prints odd number only partitions of a positive integer value
+ * For example, if value is 5
+ * 1 + 1 + 1 + 1 + 1 and
+ * 1 + 3 + 1 are valid partitions
+ *
+ * 5 is a valid partition
+ * 
+ * 1 + 1 + 1 + 2 and
+ * 2 + 1 + 2 and
+ * 2 + 3 are invalid partitions.
+ * 
+ * The program should generate only valid partitions.  Do not
+ * generates invalid partitions and checks validity before printing.
+ */
+void partition_odd(int * result, int ind, int num)
+{
+  int i = 0;
+  if (num == 0)
+    {
+      printpartition(result, ind);
+      /* ind tells us how many elements are used */
+    }
+  for (i = 1; i <= num; i++)
+    {
+      
+      if(i % 2 == 1)
+	{
+	  result[ind] = i;
+	  partition_odd(result, ind + 1, num - i);
+	}
+    }
+}
+
+
+void partitionOdd(int value)
+{
+  printf("partitionOdd %d\n", value);
+  int arr[MAXLENGTH] = {0};
+  partition_odd(arr,0,value);
+}
+
+/*
+ * =================================================================
+ * This function prints even number only partitions of a positive integer value
+ * For example, if value is 8
+ * 2 + 2 + 2 + 2and
+ * 2 + 4 + 2 are valid partitions
+ *
+ * 8 is a valid partition
+ *
+ * 2 + 1 + 1 + 2 + 2and
+ * 2 + 1 + 2 + 3and
+ * 5 + 3 are invalid partitions.
+ *
+ * if the value is 5, there will be no result generated
+ * 
+ * The program should generate only valid partitions.  Do not
+ * generates invalid partitions and checks validity before printing.
+ */
+void partition_even(int * result, int ind, int num)
+{
+  int i = 0;
+  if (num == 0)
+    {
+      printpartition(result, ind);
+      /* ind tells us how many elements are used */
+    }
+  for (i = 1; i <= num; i++)
+    {
+      
+      if(i % 2 == 0)
+	{
+	  result[ind] = i;
+	  partition_even(result, ind + 1, num - i);
+	}
+
+    }
+}
+
+void partitionEven(int value)
+{
+  printf("partitionEven %d\n", value);
+  int arr[MAXLENGTH] = {0};
+  partition_even(arr,0,value);
+}
+
+/*
+ * =================================================================
+ * This function prints alternate ood and even number partitions of a positive integer value. Each partition starts from and odd number, even number, ood number again, even number again...etc.
+ *
+ * For example, if value is 6
+ * 1 + 2 + 1 + 2 and
+ * 3 + 2 + 1 are valid partitions
+ *
+ * 6 is not a valid partition
+ *
+ * 2 + 1 + 1 + 2 and
+ * 2 + 1 + 3and
+ * 5 + 1 are invalid partitions.
+ * 
+ * The program should generate only valid partitions.  Do not
+ * generates invalid partitions and checks validity before printing.
+ */
+void partition_oddeven(int * result, int ind, int num)
+{
+  int i = 0;
+  if (num == 0)
+    {
+      printpartition(result, ind);
+      /* ind tells us how many elements are used */
+    }
+  for (i = 1; i <= num; i++)
+    {
+      if(i % 2 != ind%2)
+
+	{
+          result[ind] = i;
+	  partition_oddeven(result, ind + 1, num - i);
+        }
+    }
+}
+
+void partitionOddAndEven(int value)
+{
+  printf("partitionOddAndEven %d\n", value);
+  int arr[MAXLENGTH] = {0};
+  partition_oddeven(arr,0,value);
+}
+
+/*
+ * =================================================================
+ * This function prints prime number only partitions of a positive integer value
+ * For example, if value is 6
+ * 2 + 2 + 2 and
+ * 3 + 3 are valid partitions
+ *
+ * 6 is not a valid partition
+ * 
+ * 2 + 4 and
+ * 1 + 5 are invalid partitions.
+ * 
+ * The program should generate only valid partitions.  Do not
+ * generates invalid partitions and checks validity before printing.
+ */
+int prime(int number)
+{
+  int i;
+  
+  if(number == 1){return 0;}
+  else if(number ==2){return 1;}
+  else
+    {   
+      for(i = 2; i < number;i++)
+	{
+	  if(number % i == 0)
+	    {
+	      return 0;
+            }
+
+	}
+    }
+  return 1;
+}
+
+void partition_prime(int * result, int ind, int num)
+{
+  int i = 0;
+  int temp;
+  if (num == 0)
+    {
+      printpartition(result, ind);
+
+    }
+  for (i = 1; i <= num; i++)
+    {
+      temp = prime(i);
+      if(temp == 1)
+	{
+          result[ind] = i;
+	  partition_prime(result, ind + 1, num - i);
+        }
+    }
+}
+
+void partitionPrime(int value)
+{
+  printf("partitionPrime %d\n", value);
+  int arr[MAXLENGTH] = {0};
+  partition_prime(arr,0,value);
+}

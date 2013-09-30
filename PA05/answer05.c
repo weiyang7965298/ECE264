@@ -296,7 +296,7 @@ int saveString(char * filename, char * * arrString, int numString)
  
   f = fopen(filename, "w");
   if(f == NULL){return 0;}
-   int i;
+  int i;
   for(i = 0; i < numString; i++)
     {
       fprintf(f, "%s", arrString[i]);
@@ -345,7 +345,9 @@ void sortInteger(int * arrInteger, int numInteger)
  *
  */
 int compstring(const void *p1, const void *p2)
-{return strcmp(*((char **)p1),*((char **)p2));}
+{
+  return strcmp(*((char **)p1),*((char **)p2));
+}
 
 void sortString(char * * arrString, int numString)
 {

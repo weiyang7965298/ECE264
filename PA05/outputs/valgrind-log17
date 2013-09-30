@@ -1,0 +1,73 @@
+==10895== Memcheck, a memory error detector
+==10895== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==10895== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==10895== Command: ./pa05 s ./inputs/17-drseuss outputs/17-drseuss.out
+==10895== Parent PID: 10877
+==10895== 
+--10895-- 
+--10895-- Valgrind options:
+--10895--    --tool=memcheck
+--10895--    --leak-check=full
+--10895--    --verbose
+--10895--    --log-file=outputs/valgrind-log17
+--10895-- Contents of /proc/version:
+--10895--   Linux version 2.6.32-358.18.1.el6.x86_64 (mockbuild@x86-003.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-3) (GCC) ) #1 SMP Fri Aug 2 17:04:38 EDT 2013
+--10895-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--10895-- Page sizes: currently 4096, max supported 4096
+--10895-- Valgrind library directory: /usr/lib64/valgrind
+--10895-- Reading syms from /home/shay/a/wei55/ECE264/solutions/ECE264/PA05/pa05
+--10895-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--10895--    object doesn't have a dynamic symbol table
+--10895-- Reading syms from /lib64/ld-2.12.so
+--10895-- Scheduler: using generic scheduler lock implementation.
+--10895-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==10895== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-10895-by-wei55-on-ecelinux05.ecn.purdue.edu
+==10895== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-10895-by-wei55-on-ecelinux05.ecn.purdue.edu
+==10895== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-10895-by-wei55-on-ecelinux05.ecn.purdue.edu
+==10895== 
+==10895== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==10895== don't want to do, unless you know exactly what you're doing,
+==10895== or are doing some strange experiment):
+==10895==   /usr/lib64/valgrind/../../bin/vgdb --pid=10895 ...command...
+==10895== 
+==10895== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==10895==   /path/to/gdb ./pa05
+==10895== and then give GDB the following command
+==10895==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=10895
+==10895== --pid is optional if only one valgrind process is running
+==10895== 
+--10895-- REDIR: 0x318d417520 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--10895-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--10895-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--10895-- REDIR: 0x318d417390 (index) redirected to 0x4a07bf0 (index)
+--10895-- REDIR: 0x318d417410 (strcmp) redirected to 0x4a08530 (strcmp)
+--10895-- Reading syms from /lib64/libc-2.12.so
+--10895-- REDIR: 0x318d884ec0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10895-- REDIR: 0x318d887180 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10895-- REDIR: 0x318d882e30 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--10895-- REDIR: 0x318d87f8d0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10895-- REDIR: 0x318d927ac0 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+--10895-- REDIR: 0x318d87a8e0 (malloc) redirected to 0x4a0696c (malloc)
+--10895-- REDIR: 0x318d883540 (memchr) redirected to 0x4a085d0 (memchr)
+--10895-- REDIR: 0x318d889860 (memcpy) redirected to 0x4a08b20 (memcpy)
+--10895-- REDIR: 0x318d881310 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10895-- REDIR: 0x318d932d90 (__strlen_sse42) redirected to 0x4a07f50 (strlen)
+--10895-- REDIR: 0x318d880d60 (strcpy) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10895-- REDIR: 0x318d933820 (???) redirected to 0x4a07f90 (strcpy)
+--10895-- REDIR: 0x318d87b710 (free) redirected to 0x4a06369 (free)
+--10895-- REDIR: 0x318d88ace0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--10895-- REDIR: 0x318d8846f0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--10895-- REDIR: 0x318d881350 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+==10895== 
+==10895== HEAP SUMMARY:
+==10895==     in use at exit: 0 bytes in 0 blocks
+==10895==   total heap usage: 7 allocs, 7 frees, 1,381 bytes allocated
+==10895== 
+==10895== All heap blocks were freed -- no leaks are possible
+==10895== 
+==10895== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--10895-- 
+--10895-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--10895-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==10895== 
+==10895== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)

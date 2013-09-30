@@ -238,9 +238,8 @@ void freeInteger(int * arrInteger, int numInteger)
 void freeString(char * * arrString, int numString)
 {
   int i;
-  for (i = 0; i < numString; i++)
-  {free(arrString[i]);}
-   free(arrString);
+  for (i = 0; i < numString; i++){free(arrString[i]);}
+  free(arrString);
 }
 
 /* ----------------------------------------------- */

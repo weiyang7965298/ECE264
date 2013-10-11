@@ -91,7 +91,6 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
-
 #include "pa06.h"
 
 /*
@@ -172,7 +171,95 @@
  */
 struct Image * loadImage(const char* filename)
 {
-    return NULL;
+  struct ImageHeader hdr1;
+  struct Image* hdr2;
+  int retval;
+  FILE* f = fopen(filename,"rb");
+
+  if(f==NULL)
+    {
+      printf("The file can not be opened!");
+      return NULL;
+    }
+
+  retval = fread(&hdr1,sizeof(struct ImageHeader),1,f);
+  if(retval != 1)
+    {
+      return NULL;
+    } 
+  if(hdr1.magic_bits != ECE264_IMAGE_MAGIC_BITS)
+    {
+      return NULL;
+    }
+  if(hdr1.width <= 0)
+    {
+      return NULL;
+    }
+  if(hdr1.height <= 0)
+    {
+      return NULL;
+    }
+  if(hdr1.comment_len <= 0)
+    {
+      return NULL;
+    }
+   
+ 
+  
+  hdr2=malloc(sizeof(struct Image));
+  hdr2->width = (int)hdr1.width;
+  hdr2->height= (int)hdr1.height;
+
+  int comment_len = (int)hdr1.comment_len;
+  int data_len = (hdr2->width)*(hdr2->height);
+  int i;
+  int j;
+
+  hdr2->comment = malloc(sizeof(char)*comment_len);
+  if(hdr2->comment == NULL)
+    {
+      freeImage(hdr2);
+      return NULL;
+    }
+  
+  
+  hdr2->data = malloc(sizeof(uint8_t)*data_len);
+  if(hdr2->data == NULL)
+    {
+      freeImage(hdr2);
+      return NULL;
+    }
+   
+  
+  i =fread(hdr2->comment,comment_len,1,f);
+  if(i!=1)
+    {
+      freeImage(hdr2);
+      return NULL;
+    }
+   
+  if(hdr2->comment[comment_len-1] != '\0')
+    {
+      freeImage(hdr2);
+      return NULL;
+    }
+ 
+  j=fread(hdr2->data,data_len,1, f);
+  if(j!=1)
+    {
+      freeImage(hdr2);
+      return NULL;
+    }
+
+  if(fread(hdr2->data,1,1,f))
+    {
+      freeImage(hdr2);
+      return NULL;
+    }
+
+ 
+  fclose(f);
+  return hdr2;
 }
 
 
@@ -188,7 +275,12 @@ struct Image * loadImage(const char* filename)
  */
 void freeImage(struct Image * image)
 {
-
+ if(image != NULL)
+      {
+        free(image->comment);
+        free(image->data);
+      }
+    free(image);
 }
 
 /*
@@ -218,6 +310,34 @@ void freeImage(struct Image * image)
 void linearNormalization(struct Image * image)
 {
 
+  uint8_t * pixel;
+  int ind = 1;
+  int length;
+  int max_value;
+  int min_value;
+
+  length = (image->width)*(image->height);
+  pixel = image->data;
+  max_value = pixel[0];
+  min_value = pixel[0];
+  
+  do
+    {
+      if(pixel[ind] > max_value)
+	{
+	  max_value = pixel[ind];
+        }
+      if( pixel[ind]<min_value)
+        {
+          min_value=pixel[ind];
+        }
+      ++ind;
+    }while(ind < length);
+ 
+  for(ind=0;ind<length;++ind)
+    {
+      pixel[ind] = (pixel[ind] - min_value) * 255.0/(max_value - min_value);
+    }  
 }
 
 

@@ -1,0 +1,72 @@
+GCC = gcc
+CFLAGS = -g -Wall -Wshadow
+OBJS = answer06.o pa06.o
+HDRS = pa06.h
+VALGRIND = valgrind --tool=memcheck --leak-check=full --verbose
+
+
+pa06: $(OBJS) $(HDRS)
+	$(GCC) $(CFLAGS) $(OBJS) -o $@
+
+grade: pa06
+	perl grader.pl 4 2 10
+
+.c.o: $(GCC) $(CFLAGS) -c $*.c
+
+clean: rm -f pa06 $(OBJS) outputs/*
+
+test0: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput0 ./pa06 images/01-unnormalized-smile.ee264 outputs/output01
+	@diff -w outputs/output01 expected/01-smile.ppm
+
+test1: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput1 ./pa06 images/02-unnormalized-cat-chess.ee264 outputs/output02
+	@diff -w outputs/output02 expected/02-cat-chess.ppm
+
+test2: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput2 ./pa06 images/03-unnormalized-hawkes-bay-NZ.ee264 outputs/output03
+	@diff -w outputs/output03 expected/03-hawkes-bay-NZ.ppm
+
+test3: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput3 ./pa06 images/04-unnormalized-nelsonmandela.ee264 outputs/output04
+	@diff -w outputs/output04 expected/04-nelsonmandela.ppm
+
+test4: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput4 ./pa06 images/05-unnormalized-sagan-stamp.ee264 outputs/output05
+	@diff -w outputs/output05 expected/05-sagan-stamp.ppm
+
+test5: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput5 ./pa06 corrupt-testcases/bad-comment-len.ee264 outputs/output06
+
+
+test6: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput6 ./pa06 corrupt-testcases/big-width-height.ee264 outputs/output07
+
+
+test7: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput7 ./pa06 corrupt-testcases/check-magic-bits.ee264 outputs/output08
+
+
+test8: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput8 ./pa06 corrupt-testcases/comment-has-no-null-byte.ee264 outputs/output09
+
+
+test9: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput9 ./pa06 corrupt-testcases/height0.ee264 outputs/output10
+
+
+test10: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput10 ./pa06 corrupt-testcases/height-wrong.ee264 outputs/output11
+
+
+
+test11: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput11 ./pa06 corrupt-testcases/incomplete-header.ee264 outputs/output12
+
+
+test12: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput12 ./pa06 corrupt-testcases/incomplete-image.ee264 outputs/output13
+
+
+test13: pa06
+	@$(VALGRIND) --log-file=outputs/memoutput13 ./pa06 corrupt-testcases/width0.ee264 outputs/output14

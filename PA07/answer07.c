@@ -35,7 +35,14 @@ void List_print(FILE * out, Node * head)
  */
 void List_destroy(Node * head)
 {
-
+  Node * temp;
+  while(head != NULL)
+    {
+      temp = head->next;
+      //temp = head;
+      free(head);
+      head = temp;
+    }
 }
 
 /**
@@ -54,7 +61,12 @@ void List_destroy(Node * head)
 Node * List_create(int value, int index)
 {
 
-    return NULL;
+  Node * head=malloc(sizeof(Node));
+  if(head == NULL){return NULL;}
+  head->value = value;
+  head->index = index;
+  head->next = NULL;
+  return head;
 }
 
 /**
@@ -85,7 +97,16 @@ Node * List_create(int value, int index)
  */
 Node * List_build(int * value, int * index, int length)
 {
-    return NULL;
+  Node * head = NULL;
+  int m;
+  for(m=0;m<length;m = m + 1)
+    {
+      if(value[m]!=0)
+	{
+	  head=List_insert_ascend (head, value[m], index[m]);
+	}
+    }
+  return head;
 }
 
 
@@ -110,7 +131,15 @@ Node * List_build(int * value, int * index, int length)
  */
 Node * List_insert_ascend(Node * head, int value, int index)
 {
-    return NULL;
+  if(head==NULL){return  List_create(value, index);}
+  if((head->index) > index)
+    {
+      Node * m =  List_create(value, index);
+      m->next=head;
+      return m;
+    }
+  head->next = List_insert_ascend(head->next,value,index);
+  return head;
 }
 
 
@@ -126,7 +155,28 @@ Node * List_insert_ascend(Node * head, int value, int index)
  */
 Node * List_delete(Node * head, int index)
 {
-    return NULL;
+  Node * p = head;
+  Node * q = p -> next;
+  if (p == NULL) {return p;}
+  // not rescursion method
+  if ((p -> index) == index)
+    {
+      p = p -> next;
+      free (head);
+      return p;
+    }
+  while ((q != NULL) && ((q -> index) != index))
+    {
+      q = q -> next;
+      p = p -> next;
+    }
+  if (q != NULL)
+    {
+      p -> next = q -> next;
+      free (q);
+    }
+  return head;
+
 }
 
 /**
@@ -148,7 +198,12 @@ Node * List_delete(Node * head, int index)
  */
 Node * List_copy(Node * head)
 {
-    return NULL;
+  if(head == NULL){return head;}
+  Node* m = malloc(sizeof(Node));
+  m->value = head->value;
+  m->index = head->index;
+  m->next = List_copy(head->next);
+  return m;  
 }
 
 
@@ -172,8 +227,37 @@ Node * List_copy(Node * head)
  * This function should not modify either "head1" or "head2". You only
  * need to make a clone of "head1".
  */
+Node * ListAddition(Node * head,int value,int index)
+{
+  if(head == NULL)
+    {
+      return List_create(value, index);
+    }
+  if((head->index) == index)
+    {
+      head->value += value;
+      return head;
+    }
+  if((head->index) > index)
+    {
+      Node * m = List_create(value, index);
+      m->next=head;
+      return m;
+    }
+  head->next = ListAddition(head->next,value,index);
+  return head;
+
+}
 Node * List_merge(Node * head1, Node * head2)
 {
-    return NULL;
+  Node * m = List_copy(head1);
+  while(head2 != NULL)
+    {
+      m = ListAddition(m,head2->value,head2->index);
+      head2 = head2->next;
+      if((m -> value) == 0){m = List_delete(m, m->index);}
+    }
+  return m;
 }
+
 

@@ -90,12 +90,12 @@ int isValidState(const char * state)
 */
 int isValidMoveList(const char * moves)
 {
-  int i;
-  int length = strlen(moves);
-
-  for (i = 0; i < length; i++)
+  int m;
+  int len;
+  len = strlen(moves);
+  for (m = 0; m < len; m++)
     {
-      if((moves[i] != 'R') && (moves[i] != 'L') && (moves[i] != 'U') && (moves[i] != 'D'))
+      if((moves[m] != 'R') && (moves[m] != 'L') && (moves[m] != 'U') && (moves[m] != 'D'))
         {
          return FALSE;
         }
@@ -146,73 +146,52 @@ void printPuzzle(const char * state)
 */
 int move(char * state, char m)
 {
-  //step 1
   int position = 0;
   int i;
-
-  for (i = 0; i < 17; i++)
-    {
-      if (state[i] == '-')
-        {
-         position = i;
-        }
-    }
-
-  int row = position / SIDELENGTH;
-  int col = position % SIDELENGTH;
-  
-  //step 2
+  int col;
+  int row; 
   int new_row;
   int new_col;
-  
-  if (m == 'R')
+  int position_target;
+  int temp;
+  for (i = 0; i < 17; i++)
     {
-      new_row = row;
-      new_col = col + 1;
+      if (state[i] == '-'){position = i;}
     }
-
+  row = position / SIDELENGTH;
+  col = position % SIDELENGTH;
   if (m == 'L')
     {
       new_row = row;
       new_col = col -1;
     }
-
   if (m == 'U')
     {
       new_row = row - 1;
       new_col = col;
     }
-
+  if (m == 'R')
+    {
+      new_row = row;
+      new_col = col + 1;
+    }
   if (m == 'D')
     {
       new_row = row + 1;
       new_col = col;
     }
-  
   if ((m != 'R') && (m != 'L') && (m != 'U') && (m != 'D'))
     {
       return FALSE;
     }
-
-  //step 3
-  if ((new_row < 0) || (new_row >= SIDELENGTH))
+  if ((new_row < 0) || (new_row >= SIDELENGTH)|| (new_col < 0) || (new_col >= SIDELENGTH))
     {
       return FALSE;
     }
-
-  if ((new_col < 0) || (new_col >= SIDELENGTH))
-    {
-      return FALSE;
-    }
-
-  //step 4
-  int new_position = new_row * SIDELENGTH + new_col;
-
-  //step 5
-  int temp = state[new_position];
-  state[new_position] = state[position];
+  position_target = new_row * SIDELENGTH + new_col;
+  temp = state[position_target];
+  state[position_target] = state[position];
   state[position] = temp;
-
   return TRUE;
 }
 
@@ -231,7 +210,7 @@ int move(char * state, char m)
 */
 void processMoveList(char * state, const char * movelist)
 {
-  //step 1
+  /*
   int length = strlen(movelist);
   int i;
   int check;
@@ -246,9 +225,20 @@ void processMoveList(char * state, const char * movelist)
         }
     }
 
-  //step 2
   printf("%s\n", state);
   return;
+
+  */
+  int len = strlen(movelist);
+  int i;
+  for (i = 0; i < len; i++)
+    {
+      if (move(state, movelist[i]) == FALSE)
+        {
+         printf("I\n");
+        }
+    }
+  printf("%s\n", state);
 }
 
 
